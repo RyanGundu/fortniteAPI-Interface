@@ -32,6 +32,7 @@
 				<input type="text" class="form-control" id="username" placeholder="Epic UserName">
 			</div>
 			<button id="submit" class="btn btn-primary mb-2">Submit</button>
+			<div class="loader"></div>
 		</div>
 		
 		<div class="form-check form-check-inline">
@@ -62,21 +63,21 @@
 			<tbody>
 				<tr>
 				<th scope="row">Wins</th>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
+				<td id="soloWin">-</td>
+				<td id="duoWin">-</td>
+				<td id="squadWin">-</td>
 				</tr>
 				<tr>
 				<th scope="row">Eliminations</th>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
+				<td id="soloElim">-</td>
+				<td id="duoElim">-</td>
+				<td id="squadElim">-</td>
 				</tr>
 				<tr>
 				<th scope="row">Games Played</th>
-				<td>-</td>
-				<td>-</td>
-				<td>-</td>
+				<td id="soloCount">-</td>
+				<td id="duoCount">-</td>
+				<td id="squadCount">-</td>
 				</tr>
 				<!-- <tr>
 				<th scope="row">Games played</th>
