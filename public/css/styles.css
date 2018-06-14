@@ -1,0 +1,32 @@
+body, html {
+    height: 100%;
+}
+body {
+    background-image: url('../background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    color: white;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    margin: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 10px;
+}
+
+.panelOption {
+    margin-left: 5%;
+}
+
+.panel {
+    background-color: rgba(0, 0, 0, 0.85);
+    max-width: 500px;
+    margin-left: 5%;
+    padding: 15px;
+}
+
+
