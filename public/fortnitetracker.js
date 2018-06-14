@@ -4,9 +4,9 @@ $(function(){
 	var username = $('#username');
 	var platform = '';
 	
-	var ps4 = $('#ps4')
-	var xbox = $('#xbox')
-	var pc = $('#pc')
+	var ps4 = $('#ps4');
+	var xbox = $('#xbox');
+	var pc = $('#pc');
 
 
 	
