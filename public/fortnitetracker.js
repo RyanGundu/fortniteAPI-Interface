@@ -1,8 +1,13 @@
 $(function(){
 
-	var loader = $('.loader');
-	var submitBtn = $('#submit');
-	var username = $('#username');
+	$('.compare').hide(); //hide the compare panels
+	var singleBtn = $('#option1'); //single button
+	var compareBtn = $('#option2'); //compare button
+	
+
+	var loader = $('.loader'); //loading symbol
+	var submitBtn = $('#submit'); //submit button
+	var username = $('#username'); //username field
 	var platform = '';
 
 	
@@ -10,6 +15,15 @@ $(function(){
 	var xbox = $('#xbox');
 	var pc = $('#pc');
 
+	singleBtn.click(function(){
+		$('.compare').hide();
+		$('.single').show();
+	});
+
+	compareBtn.click(function(){
+		$('.single').hide()
+		$('.compare').show();
+	});
 	
 	submitBtn.click(function(){
 
@@ -38,15 +52,22 @@ $(function(){
 			datatype: 'json',
 			data: data,
 			success: function (data) {
-				data = JSON.parse(data);
+				if (data.error) {
+					console.log('Sorry player not found');
+				} else {
+					data = JSON.parse(data);
+					displayStats(data);
+				}
 				console.log(data);
-				displayStats(data);
 				loader.css('visibility', 'hidden');
 			},
 			fail: function(error) {
 				console.log(error);
 				loader.css('visibility', 'hidden'); 
-        	}
+			},
+			error: function () {
+				console.log('OOPS');
+			}
 		});
 		
 	});
@@ -63,6 +84,18 @@ $(function(){
 		$('#soloCount').html(data.stats.p2.matches.value);
 		$('#duoCount').html(data.stats.p10.matches.value);
 		$('#squadCount').html(data.stats.p9.matches.value);
+
+		$('#soloWR').html(data.stats.p2.winRatio.value + "%");
+		$('#duoWR').html(data.stats.p10.winRatio.value + "%");
+		$('#squadWR').html(data.stats.p9.winRatio.value + "%");
+
+		$('#solokd').html(data.stats.p2.kd.value + "%");
+		$('#duokd').html(data.stats.p10.kd.value + "%");
+		$('#squadkd').html(data.stats.p9.kd.value + "%");
+
+		$('#solokpg').html(data.stats.p2.kpg.value);
+		$('#duokpg').html(data.stats.p10.kpg.value);
+		$('#squadkpg').html(data.stats.p9.kpg.value);
 	}
 
 
