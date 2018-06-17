@@ -102,6 +102,29 @@ h1 {
     height: 100px;
 }
 
+/* The Modal */
+.close {
+    margin-left: 95%;
+    float: right;
+}
+ .error {
+     visibility: hidden;
+ }
+
+.modal-content {
+    background-color: #e60000;
+ }
+
+.modal-title {
+    font-size: 40px;
+}
+
+.modal-body {
+     background-color: white;
+     color: black;
+     font-size: 17px;
+     -webkit-text-stroke: 1px white;
+ }
 
 
 

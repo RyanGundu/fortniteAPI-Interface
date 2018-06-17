@@ -30,18 +30,19 @@
 			<button id="submit" class="btn btn-primary mb-2">Submit</button>
 			<div class="loader"></div>
 		</div>
-		
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ps4" value="option1">
-			<label class="form-check-label" for="ps4">PS4</label>
-		</div>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="xbox" value="option2">
-			<label class="form-check-label" for="xbox">XBOX</label>
-		</div>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="pc" value="option3">
-			<label class="form-check-label" for="pc">PC</label>
+		<div class="platforms">
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ps4" value="option1">
+				<label class="form-check-label" for="ps4">PS4</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="xbox" value="option2">
+				<label class="form-check-label" for="xbox">XBOX</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="pc" value="option3">
+				<label class="form-check-label" for="pc">PC</label>
+			</div>
 		</div>
 		
 	</div>
@@ -151,9 +152,35 @@
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="container">
+		<button type="button" class="error btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+			<!-- Modal content-->
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-header">
+					<h4 class="fn modal-title">Player Not Found</h4>
+					</div>
+					<div class="fn modal-body">
+					<p>Sorry, it seems that your username was not found
+					make sure to check your spelling and selected platform,
+					otherwise this may be an issue with the API</p>
+					</div>
+					<div class="modal-footer">
+					<p>If you have any questions please contact me at ryangundu@hotmail.com</p>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="static/fortnitetracker.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 </body>
 </html>

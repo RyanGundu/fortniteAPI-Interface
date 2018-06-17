@@ -16,13 +16,18 @@ $(function(){
 	var pc = $('#pc');
 
 	singleBtn.click(function(){
+		singleBtn.prop('disabled', true);
+		compareBtn.prop('disabled', false);
 		$('.compare').hide();
 		$('.single').show();
+
 	});
 
 	compareBtn.click(function(){
-		$('.single').hide()
-		$('.compare').show();
+		compareBtn.prop('disabled', true);
+		singleBtn.prop('disabled', false);
+		$('.single').hide();
+		$('.compare').show();		
 	});
 	
 	submitBtn.click(function(){
@@ -34,6 +39,7 @@ $(function(){
 		} else if (pc.prop('checked')) {
 			platform = 'pc';
 		} else {
+			$('.platforms').effect("shake");
 			return console.log('No platform selected');
 		}
 
@@ -46,6 +52,7 @@ $(function(){
 		var data = {};
 		data.username = username.val().toLowerCase();
 		data.platform = platform;
+
 		$.ajax({
 			type: "POST",
 			url: '/',
@@ -53,20 +60,25 @@ $(function(){
 			data: data,
 			success: function (data) {
 				if (data.error) {
+					$('.error').click();
 					console.log('Sorry player not found');
 				} else {
-					data = JSON.parse(data);
-					displayStats(data);
+									
+					try {
+						data = jQuery.parseJSON(data);
+						displayStats(data);
+						// console.log(data);
+					} catch (err) {
+						$('.error').click();
+						// console.log('player not found');
+					}
+					
 				}
-				console.log(data);
 				loader.css('visibility', 'hidden');
 			},
 			fail: function(error) {
 				console.log(error);
 				loader.css('visibility', 'hidden'); 
-			},
-			error: function () {
-				console.log('OOPS');
 			}
 		});
 		
@@ -89,9 +101,9 @@ $(function(){
 		$('#duoWR').html(data.stats.p10.winRatio.value + "%");
 		$('#squadWR').html(data.stats.p9.winRatio.value + "%");
 
-		$('#solokd').html(data.stats.p2.kd.value + "%");
-		$('#duokd').html(data.stats.p10.kd.value + "%");
-		$('#squadkd').html(data.stats.p9.kd.value + "%");
+		$('#solokd').html(data.stats.p2.kd.value);
+		$('#duokd').html(data.stats.p10.kd.value);
+		$('#squadkd').html(data.stats.p9.kd.value);
 
 		$('#solokpg').html(data.stats.p2.kpg.value);
 		$('#duokpg').html(data.stats.p10.kpg.value);

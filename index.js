@@ -19,12 +19,11 @@ app.get('/', function(req, res){
 var uri = 'https://api.fortnitetracker.com/v1/profile/';
 
 app.post('/',function(req, res){
-	console.log(req.body);
+	// console.log(req.body);
 	request.get(uri + req.body.platform + '/' + req.body.username, {
 		headers : {
 			'TRN-Api-Key': '4cfe622f-6858-4ea3-bcb3-cc501622337c'
 		}}, function(err, response, body) {
-			// console.log(body);
 			res.json(body);
 	});
 
