@@ -29,6 +29,17 @@ app.post('/',function(req, res){
 
 });
 
+app.post('/2',function(req, res){
+	// console.log(req.body);
+	request.get(uri + req.body.platform + '/' + req.body.username, {
+		headers : {
+			'TRN-Api-Key': '12e4dc49-c224-4a42-8e44-2f7305078132'
+		}}, function(err, response, body) {
+			res.json(body);
+	});
+
+});
+
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
 	console.log("Running app at localhost: "+ port);

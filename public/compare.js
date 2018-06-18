@@ -4,19 +4,31 @@ $(function(){
     var player1Data = {};
     var player2Data = {};
 
+    var p1 = {};
+    var p2 = {};
+    p1.console = false;
+    p2.console = false;
+
     var players = [];
 
 	compareBtn.click(function(){
         if (getData()) {
+            $('.compare-results').hide();
             players = [];
             compareBtn.prop('disabled', true);
             $('.compLoad').css('visibility', 'visible');
-            requestData(player1Data);
+
+            requestData(player1Data, p1, '/');
             setTimeout(function(){ //wait 2 seconds before the next request
-                requestData(player2Data);
+                requestData(player2Data, p2, '/2');
                 setTimeout(function() {
                     try {
-                        comparePlayers();
+                        if(!comparePlayers()) { //if second player hasent been loaded yet
+                            setTimeout(comparePlayers,1000); //wait 1 second and call again
+                        } else {
+                            $('.compLoad').css('visibility', 'hidden');
+                            compareBtn.prop('disabled', false);
+                        }
                     } catch (err) {
                         compareBtn.prop('disabled', false);
                         $('.compLoad').css('visibility', 'hidden');
@@ -24,7 +36,6 @@ $(function(){
                         // console.log('Something went wrong');
                     }
                 },2000);
-            
             },2000);
         }
     });
@@ -48,15 +59,19 @@ $(function(){
         if (platform1 == '' || platform2 == '' || username1.val().length <= 0 || username2.val().length <= 0) {return false}
 
         player1Data.username = username1.val().toLowerCase();
-        // if (platform1 == 'psn' || platform1 == 'xbl') {
-		// 	player1Data.username = platform1 + '(' + player1Data.username + ')';
-		// }
+        if (platform1 == 'psn' || platform1 == 'xbl') {
+            p1.username = platform1 + '(' + player1Data.username + ')';
+            p1.platform = platform1;
+            p1.console = true;
+		}
         player1Data.platform = platform1;
 
         player2Data.username = username2.val().toLowerCase();
-        // if (platform2 == 'psn' || platform2 == 'xbl') {
-		// 	player2Data.username = platform2 + '(' + player2Data.username + ')';
-		// }
+        if (platform2 == 'psn' || platform2 == 'xbl') {
+            p2.username = platform2 + '(' + player2Data.username + ')';
+            p2.platform = platform2;
+            p2.console = true;
+		}
         player2Data.platform = platform2;
 
         return true;
@@ -77,12 +92,45 @@ $(function(){
     }
 
 
-    function requestData(data) {
+    function requestData(data, backUp, url) {
         $.ajax({
 			type: "POST",
-			url: '/',
+			url: url,
 			datatype: 'json',
-			data: data,
+            data: data,
+			success: function (data) {
+				if (data.indexOf('"error": "Player Not Found"') != -1) {
+                    if (backUp.console) {
+                        backUp.console = false;
+                        setTimeout(function(){secondaryRequest(backUp, url)},2000);
+                    }
+				} else {
+									
+					try {
+                        data = jQuery.parseJSON(data);
+                        players.push(data);
+						console.log(data);
+					} catch (err) {
+						$('.error').click();
+						// console.log('player not found');
+					}
+
+				}
+			},
+			fail: function(error) {
+				console.log(error);
+				$('.compLoad').css('visibility', 'hidden'); 
+			}
+		});
+    }
+
+    //used incase API fails on valid user
+    function secondaryRequest(data, url) {
+        $.ajax({
+			type: "POST",
+			url: url,
+			datatype: 'json',
+            data: data,
 			success: function (data) {
 				if (data.indexOf('"error": "Player Not Found"') != -1) {
 					$('.error').click();
@@ -98,7 +146,8 @@ $(function(){
 						// console.log('player not found');
 					}
 					
-				}
+                }
+
 			},
 			fail: function(error) {
 				console.log(error);
@@ -108,9 +157,8 @@ $(function(){
     }
 
     function comparePlayers () {
+
         if (players.length != 2) {
-            $('.compLoad').css('visibility', 'hidden');
-            compareBtn.prop('disabled', false);
             return false;
         }
 
@@ -144,6 +192,7 @@ $(function(){
         $('.compare-results').css('display', 'block');
         $('.compLoad').css('visibility', 'hidden');
         setTimeout(function(){compareBtn.prop('disabled', false)},2000);
+        return true;
         
     }
 
