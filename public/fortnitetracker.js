@@ -1,9 +1,13 @@
 $(function(){
 
+	var player = {};
+	var attempt2 = false;
+
 	$('.compare').hide(); //hide the compare panels
 	var singleBtn = $('#option1'); //single button
 	var compareBtn = $('#option2'); //compare button
 	
+	singleBtn.prop('disabled', true);
 
 	var loader = $('.loader'); //loading symbol
 	var submitBtn = $('#submit'); //submit button
@@ -18,9 +22,8 @@ $(function(){
 	singleBtn.click(function(){
 		singleBtn.prop('disabled', true);
 		compareBtn.prop('disabled', false);
-		$('.compare').hide();
+		$('.compare, .compare-results').hide();
 		$('.single').show();
-
 	});
 
 	compareBtn.click(function(){
@@ -53,17 +56,64 @@ $(function(){
 		data.username = username.val().toLowerCase();
 		data.platform = platform;
 
+		if (platform == 'psn' || platform == 'xbl') {
+			player.username = platform + '(' + data.username + ')';
+			player.platform = platform;
+			attempt2 = true;
+		} else {
+			attempt2 = false;
+		}
+
+		requestStats(data);
+		
+	});
+
+	function requestStats (data) {
 		$.ajax({
 			type: "POST",
 			url: '/',
 			datatype: 'json',
 			data: data,
 			success: function (data) {
-				if (data.error) {
-					$('.error').click();
-					console.log('Sorry player not found');
+				if (data.indexOf('"error": "Player Not Found"') != -1) {	
+					if (attempt2) {
+						attempt2 = false;
+						secondRequest(player);
+					}
 				} else {
-									
+		
+					try {
+						data = jQuery.parseJSON(data);
+						displayStats(data);
+						// console.log(data);
+					} catch (err) {
+						$('.error').click();
+						// console.log('player not found');
+					}
+					loader.css('visibility', 'hidden');
+				}
+				
+			},
+			fail: function(error) {
+				console.log(error);
+				loader.css('visibility', 'hidden'); 
+			}
+		});
+	}
+
+	//used incase API fails for valid users
+	function secondRequest (data) {
+		$.ajax({
+			type: "POST",
+			url: '/',
+			datatype: 'json',
+			data: data,
+			success: function (data) {
+				if (data.indexOf('"error": "Player Not Found"') != -1) {	
+					$('.error').click();
+					console.log('player not found');
+				} else {
+		
 					try {
 						data = jQuery.parseJSON(data);
 						displayStats(data);
@@ -81,8 +131,7 @@ $(function(){
 				loader.css('visibility', 'hidden'); 
 			}
 		});
-		
-	});
+	}
 
 	function displayStats(data) {
 		$('#soloWin').html(data.stats.p2.top1.value);

@@ -111,43 +111,249 @@
 					<input id="player1" type="text" class="form-control" placeholder="Epic name">
 					<div class="console-select">
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ps4" value="option1">
-							<label class="form-check-label" for="ps4">PS4</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions1" id="ps41" value="option1">
+							<label class="form-check-label" for="ps41">PS4</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="xbox" value="option2">
-							<label class="form-check-label" for="xbox">XBOX</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions1" id="xbox1" value="option2">
+							<label class="form-check-label" for="xbox1">XBOX</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="pc" value="option3">
-							<label class="form-check-label" for="pc">PC</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions1" id="pc1" value="option3">
+							<label class="form-check-label" for="pc1">PC</label>
 						</div>
 					</div>
 				</div>
 				<div class="fn col-lg-2 text-center versus">VS
-					<div class="loader"></div>
+					<div class="loader compLoad"></div>
 				</div>
 				<div class="col-lg-5">
 					<label class="fn" for="player2">Player2:</label>
 					<input id="player2" type="text" class="form-control" placeholder="Epic name">
 					<div class="console-select">
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ps4" value="option1">
-							<label class="form-check-label" for="ps4">PS4</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="ps42" value="option4">
+							<label class="form-check-label" for="ps42">PS4</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="xbox" value="option2">
-							<label class="form-check-label" for="xbox">XBOX</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="xbox2" value="option5">
+							<label class="form-check-label" for="xbox2">XBOX</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="pc" value="option3">
-							<label class="form-check-label" for="pc">PC</label>
+							<input class="form-check-input" type="radio" name="inlineRadioOptions2" id="pc2" value="option6">
+							<label class="form-check-label" for="pc2">PC</label>
 						</div>
 					</div>	
 				</div>
 			</div>
 			<div class="row">
 				<button class="fn btn btn-block btn-primary compare-btn">COMPARE</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="compare-results">
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+
+				<div class="card">
+					<div class="card-header">
+						<h4 id="p1Name" class="fn">Player1</h4>
+						<hr>
+					</div>
+					<div class="card-body">
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<h5 class="category card-title fn">SOLO:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-sc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p1-s-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-sc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p1-s-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p1-sc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p1-s-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h5 class="category card-title fn">DUO:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-dc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p1-d-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-dc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p1-d-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p1-dc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p1-d-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h5 class="category card-title fn">SQUAD:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-sqc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p1-sq-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p1-sqc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p1-sq-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p1-sqc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p1-sq-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-sm-12 col-md-6">
+				
+				<div class="card">
+					<div class="card-header">
+						<h4 id="p2Name" class="fn">Player2</h4>
+						<hr>
+					</div>
+					<div class="card-body">
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<h5 class="category card-title fn">SOLO:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-sc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p2-s-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-sc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p2-s-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p2-sc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p2-s-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h5 class="category card-title fn">DUO:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-dc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p2-d-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-dc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p2-d-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p2-dc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p2-d-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h5 class="category card-title fn">SQUAD:</h5>
+						<div class="sub-cards card-deck">
+							<div class="row">
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-sqc-kd card">
+									<div class="card-body">
+										<h5 class="card-title">K/D</h5>
+										<p class="p2-sq-kd card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-6 col-lg-4">
+									<div class="p2-sqc-win card">
+									<div class="card-body">
+										<h5 class="card-title">WIN %</h5>
+										<p class="p2-sq-win card-text"></p>
+									</div>
+									</div>
+								</div>
+								<div class="card-col col-sm-12 col-md-12 col-lg-4">
+									<div class="p2-sqc-kpg card">
+									<div class="card-body">
+										<h5 class="card-title">KPG</h5>
+										<p class="p2-sq-kpg card-text"></p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -181,6 +387,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 	<script src="static/fortnitetracker.js"></script>
+	<script src="static/compare.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 </body>
 </html>
