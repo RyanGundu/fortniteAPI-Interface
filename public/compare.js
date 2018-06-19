@@ -148,7 +148,9 @@ $(function(){
 			success: function (data) {
 				if (data.indexOf('"error": "Player Not Found"') != -1) {
                     $('.compLoad').css('visibility', 'hidden');
-					$('.error').click();
+                    $('.error').click();
+                    singleBtn.prop('disabled', false);
+                    compareBtn.prop('disabled', false);
 					//console.log('Sorry player not found');
 				} else {
 									
