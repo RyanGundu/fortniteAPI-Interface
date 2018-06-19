@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="panel single">
-		<label for="username">Enter username:</label>
+		<label class="fn" for="username">Enter username:</label>
 		<div class="form-inline">
 			<div class="form-group mx-sm-3 mb-2">
 				<input type="text" class="form-control" id="username" placeholder="Epic UserName">
@@ -153,6 +153,56 @@
 	</div>
 
 	<div class="compare-results">
+		<div class="winner-panel">
+			<div class="card">
+				<div class="fn winName card-header text-center">
+					Winner: 
+				</div>
+				<div class="card-body">
+					<div class="row row justify-content-center">
+						<div class="col-sm-6  col-md-6 col-lg-5">
+							<div class="p1-score-card card">
+								<div class="card-body">
+								<h5 class="fn p1-score-name card-title">SCORE:</h5>
+								<p class="fn p1-score card-text text-center">0</p>
+								</div>
+							</div>
+							</div>
+							<div class="col-sm-6 col-md-6 col-lg-5">
+							<div class="p2-score-card card">
+								<div class="card-body">
+								<h5 class="fn p2-score-name card-title">SCORE:</h5>
+								<p class="fn p2-score card-text text-center">0</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<button type="button" class="fn btn score-btn" data-toggle="collapse" data-target="#score-system">View Score System</button>
+					<div id="score-system" class="fn collapse">
+						<ul>
+							<li><span style="color: green">GREEN</span>
+								<ul>
+									<li>SOLO = +0.75</li>
+									<li>DUO = + 0.50</li>
+									<li>SQUAD = + 0.35</li>
+								</ul>
+							</li>
+							<li><span style="color: yellow">YELLOW</span>/<span style="color: red">RED</span>
+								<ul>
+									<li>SOLO/DUO/SQUAD = +0.00</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card-footer text-muted text-center">
+					R.G
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-sm-12 col-md-6">
 
@@ -162,7 +212,7 @@
 						<hr>
 					</div>
 					<div class="card-body">
-						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<p class="card-text">Down below are the cards being compared, <span style="color: green">Green</span> a victory, <span style="color: yellow">Yellow</span> a tie, and <span style="color: red">Red</span> a loss</p>
 						<h5 class="category card-title fn">SOLO:</h5>
 						<div class="sub-cards card-deck">
 							<div class="row">
@@ -263,8 +313,7 @@
 						<hr>
 					</div>
 					<div class="card-body">
-						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						<h5 class="category card-title fn">SOLO:</h5>
+						<p class="card-text">Down below are the cards being compared, <span style="color: green">Green</span> a victory, <span style="color: yellow">Yellow</span> a tie, and <span style="color: red">Red</span> a loss</p>						<h5 class="category card-title fn">SOLO:</h5>
 						<div class="sub-cards card-deck">
 							<div class="row">
 								<div class="card-col col-sm-12 col-md-6 col-lg-4">
@@ -382,6 +431,12 @@
 			</div>
 		</div>	
 	</div>
+
+	<footer class="text-center">
+		<p>Created by: Ryan Gundu</p>
+		<p>Contact: ryangundu@hotmail.com</p>
+	</footer>
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

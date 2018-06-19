@@ -23,18 +23,18 @@ $(function(){
 		singleBtn.prop('disabled', true);
 		compareBtn.prop('disabled', false);
 		$('.compare, .compare-results').hide();
-		$('.single').show();
+		$('.single, footer').show();
 	});
 
 	compareBtn.click(function(){
 		compareBtn.prop('disabled', true);
 		singleBtn.prop('disabled', false);
-		$('.single').hide();
+		$('.single, footer').hide();
 		$('.compare').show();		
 	});
 	
 	submitBtn.click(function(){
-
+		submitBtn.prop('disabled', true);
 		if (ps4.prop('checked')) {
 			platform = 'psn';
 		} else if (xbox.prop('checked')) {
@@ -43,11 +43,13 @@ $(function(){
 			platform = 'pc';
 		} else {
 			$('.platforms').effect("shake");
-			return console.log('No platform selected');
+			submitBtn.prop('disabled', false);
+			return; //no platform
 		}
 
 		if (username.val().length <= 0) {
-			return console.log('No name given');
+			submitBtn.prop('disabled', false);
+			return; //no name
 		}
 
 		loader.css('visibility', 'visible');
@@ -79,6 +81,10 @@ $(function(){
 					if (attempt2) {
 						attempt2 = false;
 						secondRequest(player);
+					} else {
+						submitBtn.prop('disabled', false);
+						loader.css('visibility', 'hidden');
+						$('.error').click();
 					}
 				} else {
 		
@@ -90,6 +96,7 @@ $(function(){
 						$('.error').click();
 						// console.log('player not found');
 					}
+					submitBtn.prop('disabled', false);
 					loader.css('visibility', 'hidden');
 				}
 				
@@ -111,7 +118,7 @@ $(function(){
 			success: function (data) {
 				if (data.indexOf('"error": "Player Not Found"') != -1) {	
 					$('.error').click();
-					console.log('player not found');
+					//console.log('player not found');
 				} else {
 		
 					try {
@@ -124,6 +131,7 @@ $(function(){
 					}
 					
 				}
+				submitBtn.prop('disabled', false);
 				loader.css('visibility', 'hidden');
 			},
 			fail: function(error) {

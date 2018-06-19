@@ -82,6 +82,7 @@ h1 {
 
 .compare {
     margin-left: 5%;
+    display: none;
 }
 
 .compare .panel-vs .versus {
@@ -105,6 +106,38 @@ h1 {
     width: 100px;
     height: 100px;
 }
+
+.winName {
+    font-size: 50px;
+    -webkit-text-stroke: 1px blue;
+}
+
+.winner-panel .card-header {
+    padding: 0;
+    padding-top: 8px;
+    margin-bottom: 0px;
+}
+
+.p1-score-name, .p2-score-name {
+    -webkit-text-stroke: 1px blue;
+}
+
+.p1-score, .p2-score {
+    font-size: 80px;
+    -webkit-text-stroke: 1px blue;
+}
+
+.score-btn {
+    background-color: transparent;
+    border-color: blue;
+    color: white;
+    margin:10px;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+.score-btn:hover {
+    -webkit-transform: scale(1.1);
+}
+
 
 .compare-results {
     background-color: rgba(0, 0, 0, 0.85);
@@ -148,6 +181,11 @@ h1 {
     font-size: 25px;
 }
 
+.sub-cards .card-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .compare-results .card .category {
     font-size: 35px;
     padding: 0;
@@ -189,6 +227,18 @@ h1 {
      color: black;
      font-size: 17px;
      -webkit-text-stroke: 1px white;
+ }
+
+ footer {
+    background-color: black;
+    margin:0;
+    margin-top: -30px;
+    padding: 20px;
+    padding-top: 30px;
+    position: relative;
+    /* left: 0;
+    bottom: 0;
+    width: 100%; */
  }
 
 

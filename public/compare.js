@@ -1,6 +1,9 @@
 $(function(){
 
+    var singleBtn = $('#option1'); //main single button
+
     var compareBtn = $('.compare-btn');
+
     var player1Data = {};
     var player2Data = {};
 
@@ -13,8 +16,9 @@ $(function(){
 
 	compareBtn.click(function(){
         if (getData()) {
-            $('.compare-results').hide();
+            $('.compare-results, footer').hide();
             players = [];
+            singleBtn.prop('disabled', true);
             compareBtn.prop('disabled', true);
             $('.compLoad').css('visibility', 'visible');
 
@@ -27,9 +31,11 @@ $(function(){
                             setTimeout(comparePlayers,1000); //wait 1 second and call again
                         } else {
                             $('.compLoad').css('visibility', 'hidden');
+                            singleBtn.prop('disabled', false);
                             compareBtn.prop('disabled', false);
                         }
                     } catch (err) {
+                        singleBtn.prop('disabled', false);
                         compareBtn.prop('disabled', false);
                         $('.compLoad').css('visibility', 'hidden');
                         $('.error').click();
@@ -103,14 +109,22 @@ $(function(){
                     if (backUp.console) {
                         backUp.console = false;
                         setTimeout(function(){secondaryRequest(backUp, url)},2000);
+                    } else {
+                        $('.compLoad').css('visibility', 'hidden'); 
+                        $('.error').click();
+                        singleBtn.prop('disabled', false);
+                        compareBtn.prop('disabled', false);
                     }
 				} else {
 									
 					try {
                         data = jQuery.parseJSON(data);
                         players.push(data);
-						console.log(data);
+						//console.log(data);
 					} catch (err) {
+                        compareBtn.prop('disabled', false);
+                        singleBtn.prop('disabled', false);
+                        $('.compLoad').css('visibility', 'hidden'); 
 						$('.error').click();
 						// console.log('player not found');
 					}
@@ -133,15 +147,19 @@ $(function(){
             data: data,
 			success: function (data) {
 				if (data.indexOf('"error": "Player Not Found"') != -1) {
+                    $('.compLoad').css('visibility', 'hidden');
 					$('.error').click();
-					console.log('Sorry player not found');
+					//console.log('Sorry player not found');
 				} else {
 									
 					try {
                         data = jQuery.parseJSON(data);
                         players.push(data);
-						console.log(data);
+						//console.log(data);
 					} catch (err) {
+                        compareBtn.prop('disabled', false);
+                        singleBtn.prop('disabled', false);
+                        $('.compLoad').css('visibility', 'hidden');
 						$('.error').click();
 						// console.log('player not found');
 					}
@@ -151,7 +169,8 @@ $(function(){
 			},
 			fail: function(error) {
 				console.log(error);
-				$('.compLoad').css('visibility', 'hidden'); 
+                $('.compLoad').css('visibility', 'hidden'); 
+                $('.error').click();
 			}
 		});
     }
@@ -191,6 +210,8 @@ $(function(){
         $('.compare-results').show();
         $('.compare-results').css('display', 'block');
         $('.compLoad').css('visibility', 'hidden');
+        singleBtn.prop('disabled', false);
+        $('footer').show();
         setTimeout(function(){compareBtn.prop('disabled', false)},2000);
         return true;
         
@@ -199,7 +220,6 @@ $(function(){
     function tallyScore() {
         var p1Score = 0;
         var p2Score = 0;
-        console.log(players[0]);
 
         //SOLO COUNT
         if (players[0].stats.p2.kd.valueDec > players[1].stats.p2.kd.valueDec) {
@@ -310,6 +330,25 @@ $(function(){
             $(".p1-sqc-kpg").css("border-color", "red");
         } else {
             $(".p1-sqc-kpg, .p2-sqc-kpg").css("border-color", "yellow");
+        }
+
+        //score board
+        $(".p1-score-name").html("SCORE: " + players[0].epicUserHandle);
+        $(".p1-score").html(p1Score.toFixed(2));
+        $(".p2-score-name").html("SCORE: " + players[1].epicUserHandle);
+        $(".p2-score").html(p2Score.toFixed(2));
+
+        if (p1Score > p2Score) {
+            $(".winName").html("Winner: " + players[0].epicUserHandle);
+            $(".p1-score-card").css("border-color", "green");
+            $(".p2-score-card").css("border-color", "red");
+        } else if (p1Score < p2Score) {
+            $(".winName").html("Winner: " + players[1].epicUserHandle);
+            $(".p2-score-card").css("border-color", "green");
+            $(".p1-score-card").css("border-color", "red");
+        } else {
+            $(".winName").html("TIE");
+            $(".p1-score-card, .p2-score-card").css("border-color", "yellow");
         }
 
     }
