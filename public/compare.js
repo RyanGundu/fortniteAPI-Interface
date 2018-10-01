@@ -141,40 +141,40 @@ $(function(){
     //used incase API fails on valid user
     function secondaryRequest(data, url) {
         $.ajax({
-			type: "POST",
-			url: url,
-			datatype: 'json',
-            data: data,
-			success: function (data) {
-				if (data.indexOf('"error": "Player Not Found"') != -1) {
-                    $('.compLoad').css('visibility', 'hidden');
-                    $('.error').click();
-                    singleBtn.prop('disabled', false);
-                    compareBtn.prop('disabled', false);
-					//console.log('Sorry player not found');
-				} else {
+		type: "POST",
+		url: url,
+		datatype: 'json',
+          	data: data,
+		success: function (data) {
+			if (data.indexOf('"error": "Player Not Found"') != -1) {
+				$('.compLoad').css('visibility', 'hidden');
+				$('.error').click();
+				singleBtn.prop('disabled', false);
+				compareBtn.prop('disabled', false);
+				//console.log('Sorry player not found');
+			} else {
 									
-					try {
-                        data = jQuery.parseJSON(data);
-                        players.push(data);
-						//console.log(data);
-					} catch (err) {
-                        compareBtn.prop('disabled', false);
-                        singleBtn.prop('disabled', false);
-                        $('.compLoad').css('visibility', 'hidden');
-						$('.error').click();
-						// console.log('player not found');
-					}
+				try {
+					data = jQuery.parseJSON(data);
+					players.push(data);
+					//console.log(data);
+				} catch (err) {
+					compareBtn.prop('disabled', false);
+					singleBtn.prop('disabled', false);
+					$('.compLoad').css('visibility', 'hidden');
+					$('.error').click();
+					// console.log('player not found');
+				}
 					
-                }
+                	}
 
-			},
-			fail: function(error) {
-				console.log(error);
-                $('.compLoad').css('visibility', 'hidden'); 
-                $('.error').click();
-			}
-		});
+		},
+		fail: function(error) {
+			console.log(error);
+                	$('.compLoad').css('visibility', 'hidden'); 
+                	$('.error').click();
+		}
+	});
     }
 
     function comparePlayers () {
