@@ -86,56 +86,56 @@ $(function(){
     
     function checkPlatform(ps4, xbox, pc) {
         if (ps4.prop('checked')) {
-			return 'psn';
-		} else if (xbox.prop('checked')) {
-			return 'xbl';
-		} else if (pc.prop('checked')) {
-			return 'pc';
-		} else {
-			$('.console-select').effect("shake");
-			return '';
-		}
+		return 'psn';
+	} else if (xbox.prop('checked')) {
+		return 'xbl';
+	} else if (pc.prop('checked')) {
+		return 'pc';
+	} else {
+		$('.console-select').effect("shake");
+		return '';
+	}
     }
 
 
     function requestData(data, backUp, url) {
         $.ajax({
-			type: "POST",
-			url: url,
-			datatype: 'json',
-            data: data,
-			success: function (data) {
-				if (data.indexOf('"error": "Player Not Found"') != -1) {
-                    if (backUp.console) {
-                        backUp.console = false;
-                        setTimeout(function(){secondaryRequest(backUp, url)},2000);
-                    } else {
-                        $('.compLoad').css('visibility', 'hidden'); 
-                        $('.error').click();
-                        singleBtn.prop('disabled', false);
-                        compareBtn.prop('disabled', false);
-                    }
-				} else {
+		type: "POST",
+		url: url,
+		datatype: 'json',
+            	data: data,
+		success: function (data) {
+			if (data.indexOf('"error": "Player Not Found"') != -1) {
+		    		if (backUp.console) {
+					backUp.console = false;
+					setTimeout(function(){secondaryRequest(backUp, url)},2000);
+			    	} else {
+					$('.compLoad').css('visibility', 'hidden'); 
+					$('.error').click();
+					singleBtn.prop('disabled', false);
+					compareBtn.prop('disabled', false);
+			    	}
+			} else {
 									
-					try {
-                        data = jQuery.parseJSON(data);
-                        players.push(data);
+				try {
+					data = jQuery.parseJSON(data);
+					players.push(data);
 						//console.log(data);
-					} catch (err) {
-                        compareBtn.prop('disabled', false);
-                        singleBtn.prop('disabled', false);
-                        $('.compLoad').css('visibility', 'hidden'); 
-						$('.error').click();
-						// console.log('player not found');
-					}
-
+				} catch (err) {
+					compareBtn.prop('disabled', false);
+					singleBtn.prop('disabled', false);
+					$('.compLoad').css('visibility', 'hidden'); 
+					$('.error').click();
+					// console.log('player not found');
 				}
-			},
-			fail: function(error) {
-				console.log(error);
-				$('.compLoad').css('visibility', 'hidden'); 
+
 			}
-		});
+		},
+		fail: function(error) {
+			console.log(error);
+			$('.compLoad').css('visibility', 'hidden'); 
+		}
+	});
     }
 
     //used incase API fails on valid user
