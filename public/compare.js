@@ -49,17 +49,20 @@ $(function(){
     function getData () {
         var username1 = $('#player1'); //player1 field
         var username2 = $('#player2'); //player2 field
-	    var platform1 = '';
+	var platform1 = '';
         var platform2 = '';
+	    
         //player1 platform
         var ps4 = $('#ps41');
         var xbox = $('#xbox1');
         var pc = $('#pc1');
         platform1 = checkPlatform(ps4, xbox, pc);
+	    
         //player 2 platform
         var ps42 = $('#ps42');
         var xbox2 = $('#xbox2');
         var pc2 = $('#pc2');
+	    
         platform2 = checkPlatform(ps42, xbox2, pc2);
 
         if (platform1 == '' || platform2 == '' || username1.val().length <= 0 || username2.val().length <= 0) {return false}
